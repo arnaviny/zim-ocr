@@ -1,0 +1,77 @@
+<!-- user-management.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>myZIM - User Management</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <img src="ZIM_Logo.png" alt="ZIM Logo" />
+      <h1>ZIM OCR - User Management</h1>
+    </div>
+    <div class="header-right">
+      <span>Hello, Admin</span>
+      <button onclick="handleLogout()">Logout</button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="documents.html">Documents</a></li>
+      <li><a href="user-management.html">User Management</a></li>
+      <li><a href="settings.html">Settings</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <h2 class="page-title">User Management</h2>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Avi Balon</td>
+            <td>avi@example.com</td>
+            <td>Active</td>
+            <td>Admin</td>
+            <td>
+              <button class="btn btn-primary">Edit</button>
+              <button class="btn btn-secondary">Disable</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Inbal Cohen</td>
+            <td>inbal@example.com</td>
+            <td>Active</td>
+            <td>User</td>
+            <td>
+              <button class="btn btn-primary">Edit</button>
+              <button class="btn btn-secondary">Disable</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

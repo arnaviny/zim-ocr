@@ -1,0 +1,232 @@
+/* css/style.css */
+:root {
+    --zim-blue: #0b2e63;     /* צבע כחול כהה בסגנון ZIM */
+    --zim-white: #ffffff;
+    --zim-gray: #f2f2f2;
+    --zim-dark-gray: #333333;
+    --zim-light-gray: #e8e8e8;
+    --header-height: 60px;
+    --sidebar-width: 220px;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    direction: ltr; /* מוצג משמאל לימין */
+  }
+  
+  body {
+    background-color: var(--zim-gray);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ========== HEADER (סרגל עליון) ========== */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: var(--header-height);
+    width: 100%;
+    background-color: var(--zim-blue);
+    color: var(--zim-white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    z-index: 1000;
+  }
+  
+  header .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  header .header-left img {
+    height: 35px;
+  }
+  
+  header .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  header .header-right button {
+    background-color: transparent;
+    border: 1px solid var(--zim-white);
+    color: var(--zim-white);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* ========== SIDEBAR (תפריט צדדי) ========== */
+  .sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+    background-color: var(--zim-white);
+    border-right: 1px solid #ddd;
+    padding-top: 1rem;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar li {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--zim-light-gray);
+  }
+  
+  .sidebar li a {
+    text-decoration: none;
+    color: var(--zim-dark-gray);
+    display: block;
+    font-weight: 500;
+  }
+  
+  .sidebar li:hover {
+    background-color: #fafafa;
+  }
+  
+  /* ========== MAIN CONTENT (אזור תוכן) ========== */
+  .main-content {
+    margin-top: var(--header-height);
+    margin-left: var(--sidebar-width);
+    padding: 1.5rem;
+    background-color: var(--zim-gray);
+    min-height: calc(100vh - var(--header-height));
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--zim-dark-gray);
+  }
+  
+  /* דוגמה לטבלת נתונים */
+  .table-container {
+    background-color: var(--zim-white);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--zim-white);
+  }
+  
+  th, td {
+    padding: 0.8rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left; /* מיושר משמאל לימין */
+  }
+  
+  th {
+    background-color: #fafafa;
+  }
+  
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* דוגמה לאזור מסמך */
+  .document-viewer {
+    background-color: var(--zim-white);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+  }
+  
+  /* כפתורים כלליים */
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .btn-primary {
+    background-color: var(--zim-blue);
+    color: var(--zim-white);
+  }
+  
+  .btn-secondary {
+    background-color: #ccc;
+    color: var(--zim-dark-gray);
+  }
+
+  .floating-button {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;
+    background-color: var(--zim-blue);
+    color: var(--zim-white);
+    border: none;
+    padding: 1rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 9999; /* ensures the button is on top */
+  }
+  
+  
+  /* ========== LOGIN PAGE ========== */
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--zim-gray);
+  }
+  
+  .login-box {
+    background-color: var(--zim-white);
+    padding: 2rem;
+    border-radius: 4px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .login-box img {
+    margin-bottom: 1rem;
+  }
+  
+  .login-box h2 {
+    margin-bottom: 1rem;
+    color: var(--zim-dark-gray);
+  }
+  
+  .login-box input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* רספונסיביות בסיסית */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 180px;
+    }
+    .main-content {
+      margin-left: 180px;
+    }
+  }
+  
