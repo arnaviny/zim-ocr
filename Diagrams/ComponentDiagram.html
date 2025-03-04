@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Component Diagram - ZIM OCR</title>
+  <!-- Load Mermaid version 11.4.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      htmlLabels: true
+    });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 20px;
+      padding: 20px;
+      text-align: center;
+      color: #333;
+    }
+    h1, h2 {
+      color: #0b2e63;
+    }
+    .mermaid {
+      margin: 20px auto;
+      max-width: 900px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .explanation {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: left;
+      line-height: 1.6;
+    }
+    .explanation ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Component Diagram – ZIM OCR</h1>
+  
+  <!-- Mermaid Diagram -->
+  <div class="mermaid">
+flowchart LR
+    subgraph ZIM OCR System
+        DC[Document Controller <br/>(Handles file uploads, calls OCR, extraction)]
+        OCR[OCR Module <br/>(Tess4J or similar)]
+        EX[Extraction Module <br/>(Regex/NLP)]
+        DBL[Database Layer <br/>(PostgreSQL Access)]
+        DASH[Dashboard Module <br/>(Stats & Graphs)]
+        
+        DC --> OCR
+        DC --> EX
+        DC --> DBL
+        DC --> DASH
+    end
+  </div>
+  
+  <!-- Explanation Section -->
+  <div class="explanation">
+    <h2>Diagram Explanation</h2>
+    <p>
+      This component diagram shows the main logical components within the ZIM OCR system and how they interact:
+    </p>
+    <ul>
+      <li><strong>Document Controller (DC):</strong> The central component that receives file uploads from the frontend, triggers the OCR process, calls the Extraction Module for data parsing, and then updates the database or the Dashboard Module.</li>
+      <li><strong>OCR Module (OCR):</strong> Responsible for converting image/PDF content into text (using tools like Tess4J). The Document Controller sends the file to this module and gets back the recognized text.</li>
+      <li><strong>Extraction Module (EX):</strong> Applies regex or NLP techniques on the text from the OCR module to extract key shipping information (e.g., container numbers, ports, cargo details).</li>
+      <li><strong>Database Layer (DBL):</strong> Handles interactions with the PostgreSQL database. It stores and retrieves documents, cargo details, and any related data.</li>
+      <li><strong>Dashboard Module (DASH):</strong> Gathers statistical data and updates the dashboard with metrics, graphs, and alerts for users.</li>
+    </ul>
+    <p>
+      In a real-world deployment, each component could be organized into separate modules or services. 
+      The frontend (not shown here) would communicate with the Document Controller via REST API calls (secured with JWT), 
+      and the system orchestrates OCR processing, data extraction, and dashboard updates.
+    </p>
+  </div>
+</body>
+</html>

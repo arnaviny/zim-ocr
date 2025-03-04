@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deployment Diagram - ZIM OCR</title>
+  <!-- Load Mermaid version 11.4.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      htmlLabels: true  // Allows using HTML (like <br/>) in labels
+    });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin: 0;
+      text-align: center;
+      color: #333;
+    }
+    h1, h2 {
+      color: #0b2e63;
+    }
+    .mermaid {
+      margin: 20px auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    .explanation {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .explanation ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Deployment Diagram - ZIM OCR</h1>
+  
+  <!-- Mermaid Deployment Diagram -->
+  <div class="mermaid">
+graph TD
+    A[User] --> B[Web Browser]
+    B --> C[Frontend Container<br/>(React + Nginx)]
+    C -->|REST API (with JWT)| D[Backend Container<br/>(Spring Boot / Node.js)]
+    D --> E[Database Container<br/>(PostgreSQL)]
+  </div>
+  
+  <!-- Explanation -->
+  <div class="explanation">
+    <h2>Diagram Explanation</h2>
+    <p>This diagram illustrates the deployment architecture for the ZIM OCR system:</p>
+    <ul>
+      <li><strong>Frontend Container:</strong> Contains the React application served by Nginx, packaged in a Docker container.</li>
+      <li><strong>Backend Container:</strong> Hosts the API and business logic (implemented using Spring Boot or Node.js) in a separate Docker container.</li>
+      <li><strong>Database Container:</strong> Contains the PostgreSQL database which stores the Document data, running in its own Docker container.</li>
+      <li><strong>Communication:</strong> Users access the application via a web browser; the frontend sends REST API requests (secured by JWT) to the backend, which interacts with the database.</li>
+    </ul>
+  </div>
+</body>
+</html>

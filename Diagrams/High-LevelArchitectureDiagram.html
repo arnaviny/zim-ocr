@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Architecture Diagram</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .diagram {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 700px;
+      position: relative;
+    }
+    /* כללים לתיבות */
+    .box {
+      border: 2px solid #0b2e63;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      margin: 0 auto;
+      width: 80%;
+      position: relative;
+    }
+    .box .title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .box ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    .box ul li {
+      margin: 4px 0;
+    }
+    /* הגדרת חצים */
+    .arrow {
+      text-align: center;
+      font-size: 14px;
+      color: #0b2e63;
+      margin: 10px 0;
+      position: relative;
+    }
+    .arrow::before {
+      content: "";
+      border: solid #0b2e63;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 5px;
+      transform: rotate(45deg);
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    /* ספציפי לחצים עם תווית */
+    .arrow-label {
+      font-style: italic;
+      margin-top: 4px;
+    }
+    /* סידור התיבות בתוך תיבה פנימית (ל-Backend) */
+    .inner-boxes {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+    .inner-box {
+      border: 1px dashed #0b2e63;
+      padding: 5px;
+      width: 45%;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="diagram">
+    <!-- תיבה עליונה: Frontend (React) -->
+    <div class="box">
+      <div class="title">Frontend (React)</div>
+      <ul>
+        <li>- Dashboard</li>
+        <li>- Documents</li>
+        <li>- Upload Modal</li>
+      </ul>
+    </div>
+    
+    <!-- חץ: REST API (JSON, JWT) -->
+    <div class="arrow">
+      REST API (JSON, JWT)
+      <div class="arrow-label"></div>
+    </div>
+    
+    <!-- תיבה: Backend (Controller) -->
+    <div class="box">
+      <div class="title">Backend (Controller)</div>
+      <div>(Spring Boot / Node.js)</div>
+      <div class="inner-boxes">
+        <div class="inner-box">
+          Document Controller<br>
+          &larr; Upload, OCR, Extraction
+        </div>
+        <div class="inner-box">
+          Dashboard Controller<br>
+          &larr; Data Aggregation
+        </div>
+      </div>
+    </div>
+    
+    <!-- חץ: Data Access Layer -->
+    <div class="arrow">
+      Data Access Layer
+      <div class="arrow-label"></div>
+    </div>
+    
+    <!-- תיבה תחתונה: PostgreSQL DB -->
+    <div class="box">
+      <div class="title">PostgreSQL DB</div>
+      <div>(Document Entity)</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+בתעשייה נהוג להשתמש במסמכים ודיאגרמות שמסכמים את כל המידע בצורה מובנית וברורה. הנה רשימה של המסמכים והכלים הנפוצים:
+
+Software Requirements Specification (SRS):
+מסמך דרישות מפורט המתאר את כל הדרישות הפונקציונליות והלא פונקציונליות של המערכת, כולל Use Cases ותרחישי שימוש.
+
+Technical Design Document (TDD) / System Design Document:
+מסמך שמתאר את הארכיטקטורה הכוללת של המערכת, החלוקה למודולים, הזרימה העסקית, תהליכים, ממשקי API, והחלטות טכנולוגיות (למשל בחירת מסד נתונים, קונטיינריזציה, וכו').
+
+System Architecture Diagrams:
+דיאגרמות הכוללות:
+
+High-Level Architecture Diagram: מציגה את המבנה הכולל (Frontend, Backend, Database, Integration Layer וכו').
+Deployment Diagram: המתאר כיצד הרכיבים מיושמים ומופעלים בסביבות קונטיינרים (למשל, Docker, Kubernetes).
+UML Diagrams:
+דיאגרמות UML כמו:
+
+Class Diagrams: להצגת מבנה הנתונים (Entities) וקשרי הגומלין ביניהם.
+Sequence Diagrams: לתיאור זרימת קריאות ה-API והאינטראקציה בין ה־View, Controller וה־Model.
+Activity Diagrams / Flowcharts: להצגת התהליכים העסקיים (כמו תהליך העלאת מסמך ועיבוד OCR).
+API Documentation (OpenAPI/Swagger):
+תיעוד נקודות הקצה (Endpoints), פורמטים של הקלט והפלט (JSON), וכיצד נעשית האימות (למשל, שימוש ב-JWT).
+
+Data Model Diagrams (ER Diagrams):
+דיאגרמות ER המציגות את המודלים (Entities) במסד הנתונים, הקשרים ביניהם והשדות המרכזיים.
+
+באמצעות כל המסמכים והדיאגרמות הללו, חברי הצוות יכולים לקבל תמונה מלאה ומסודרת של התכנון הסופי, הזרימה העסקית, מבנה הנתונים ואינטגרציית השכבות.

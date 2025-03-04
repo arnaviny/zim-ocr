@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Activity Diagram - ZIM OCR</title>
+  <!-- טעינת ספריית Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin: 0;
+      color: #333;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #0b2e63;
+    }
+    .mermaid {
+    display: flex;
+    justify-content: space-around;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    .explanation {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      line-height: 1.6;
+    }
+    .explanation ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Activity Diagram - ZIM OCR</h1>
+  
+  <!-- דיאגרמת הפעילות -->
+  <div class="mermaid">
+flowchart TD
+    A[Start] --> B[User uploads document]
+    B --> C[File stored locally]
+    C --> D[Run OCR on file]
+    D --> E[Extract data from text]
+    E --> F[Validate extracted data]
+    F --> G[Save data to DB]
+    G --> H[Update dashboard statistics]
+    H --> I[Return JSON response]
+    I --> J[End]
+  </div>
+  
+  <!-- הסבר על הדיאגרמה -->
+  <div class="explanation">
+    <h2>Explanation</h2>
+    <p>This activity diagram outlines the overall process flow for the ZIM OCR system:</p>
+    <ul>
+        <li><strong>התחלה:</strong> תהליך העיבוד מתחיל.</li>
+        <li><strong>משתמש מעלה מסמך:</strong> המשתמש בוחר ומעלה מסמך (PDF/תמונה) דרך ממשק ההעלאה.</li>
+        <li><strong>אחסון הקובץ באופן מקומי:</strong> המערכת מאחסנת את הקובץ באופן זמני בסביבה המקומית לצורך עיבוד.</li>
+        <li><strong>הרצת OCR על הקובץ:</strong> המערכת מפעילה מנוע OCR (כגון Tess4J) כדי להמיר את תוכן הקובץ לטקסט.</li>
+        <li><strong>חילוץ נתונים מהטקסט:</strong> המערכת מפעילה אלגוריתם (כגון regex או NLP) לחילוץ המידע הרלוונטי מהטקסט שהתקבל מה-OCR.</li>
+        <li><strong>אימות הנתונים החולצו:</strong> הנתונים שעברו חילוץ נבדקים לאימות ולהבטחת תקינותם.</li>
+        <li><strong>שמירת הנתונים במסד הנתונים:</strong> הנתונים המאומתים נשמרים במסד הנתונים (PostgreSQL) במודל ה־Document.</li>
+        <li><strong>עדכון נתוני הדשבורד:</strong> המערכת מעדכנת את הנתונים הסטטיסטיים והגרפיים בדשבורד בהתאם לשינויים במסד.</li>
+        <li><strong>החזרת תגובת JSON:</strong> לבסוף, המערכת מחזירה תגובת JSON המכילה את כל המידע החולץ והמעובד ל־Frontend.</li>
+        <li><strong>סיום:</strong> התהליך מסתיים.</li>
+      </ul>
+</body>
+</html>

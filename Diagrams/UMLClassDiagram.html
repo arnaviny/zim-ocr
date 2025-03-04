@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>ER Diagram – Document Model</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #0b2e63;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+    .table-container {
+      background-color: #fff;
+      border: 2px solid #0b2e63;
+      border-radius: 8px;
+      padding: 10px;
+      width: 300px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .table-container h2 {
+      background-color: #0b2e63;
+      color: #fff;
+      margin: 0;
+      padding: 10px;
+      text-align: center;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      font-size: 18px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 6px;
+      border: 1px solid #ccc;
+      text-align: left;
+      font-size: 13px;
+    }
+    th {
+      background-color: #e0e0e0;
+    }
+    /* קווים מחברים בין הטבלאות (למחשה בלבד) */
+    .relationship {
+      text-align: center;
+      font-style: italic;
+      color: #333;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ER Diagram – Document Model</h1>
+  <div class="container">
+    <!-- טבלת Document (פרטי המסמך) -->
+    <div class="table-container">
+      <h2>Document</h2>
+      <table>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+        </tr>
+        <tr>
+          <td>document_id</td>
+          <td>UUID (PK)</td>
+        </tr>
+        <tr>
+          <td>billOfLadingNumber</td>
+          <td>String</td>
+        </tr>
+        <tr>
+          <td>containerNumber</td>
+          <td>String</td>
+        </tr>
+        <tr>
+          <td>vessel</td>
+          <td>String</td>
+        </tr>
+        <tr>
+          <td>voyageNumber</td>
+          <td>String</td>
+        </tr>
+        <tr>
+          <td>departureDate</td>
+          <td>TIMESTAMP</td>
+        </tr>
+        <tr>
+          <td>arrivalDate</td>
+          <td>TIMESTAMP</td>
+        </tr>
+        <tr>
+          <td>originPort</td>
+          <td>String</td>
+        </tr>
+        <tr>
+          <td>destinationPort</td>
+          <td>String</td>
+        </tr>
+        <tr>
+          <td>uploadTimestamp</td>
+          <td>TIMESTAMP</td>
+        </tr>
+        <tr>
+          <td>ocrConfidence</td>
+          <td>Numeric</td>
+        </tr>
+        <tr>
+          <td>processingTimeMs</td>
+          <td>Integer</td>
+        </tr>
+        <tr>
+          <td>ocrEngine</td>
+          <td>String</td>
+        </tr>
+        <tr>
+          <td>extractionMethod</td>
+          <td>String</td>
+        </tr>
+      </table>
+      <div class="relationship">1 Document</div>
+    </div>
+
+    <!-- טבלת Cargo Details (פרטי המטען) -->
+    <div class="table-container">
+      <h2>Cargo Details</h2>
+      <table>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+        </tr>
+        <tr>
+          <td>cargoDescription</td>
+          <td>Text</td>
+        </tr>
+        <tr>
+          <td>cargoWeight</td>
+          <td>Numeric</td>
+        </tr>
+        <tr>
+          <td>cargoQuantity</td>
+          <td>Integer</td>
+        </tr>
+        <tr>
+          <td>cargoVolume</td>
+          <td>Numeric</td>
+        </tr>
+        <tr>
+          <td>hazardous</td>
+          <td>Boolean</td>
+        </tr>
+      </table>
+      <div class="relationship">1 Document has 1 Cargo Details</div>
+    </div>
+
+    <!-- טבלת Parties (פרטי הצדדים) -->
+    <div class="table-container">
+      <h2>Parties</h2>
+      <table>
+        <tr>
+          <th>Role</th>
+          <th>Attributes</th>
+        </tr>
+        <tr>
+          <td>Shipper</td>
+          <td>
+            name: String<br>
+            address: Text<br>
+            contact: String
+          </td>
+        </tr>
+        <tr>
+          <td>Consignee</td>
+          <td>
+            name: String<br>
+            address: Text<br>
+            contact: String
+          </td>
+        </tr>
+        <tr>
+          <td>Agent</td>
+          <td>
+            name: String<br>
+            contact: String
+          </td>
+        </tr>
+      </table>
+      <div class="relationship">1 Document has 3 Parties</div>
+    </div>
+  </div>
+</body>
+</html>

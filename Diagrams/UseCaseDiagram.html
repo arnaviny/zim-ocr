@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Use Case Diagram - ZIM OCR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #0b2e63;
+    }
+    .diagram-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 50px;
+    }
+    /* תיבה מרכזית – המערכת */
+    .system-box {
+      border: 2px solid #0b2e63;
+      border-radius: 6px;
+      padding: 20px;
+      background-color: #fff;
+      display: inline-block;
+      width: 300px;
+      margin: 0 auto;
+    }
+    .system-box h2 {
+      margin: 0;
+      color: #0b2e63;
+    }
+    .system-box p {
+      color: #333;
+      font-size: 14px;
+    }
+    /* תיבות Actors */
+    .actor {
+      border: 2px solid #0b2e63;
+      border-radius: 6px;
+      padding: 10px;
+      background-color: #fff;
+      width: 180px;
+      margin: 20px;
+    }
+    .actor h3 {
+      margin: 0;
+      color: #0b2e63;
+      font-size: 16px;
+    }
+    /* מיקום Actors */
+    .actor-left {
+      position: absolute;
+      left: -240px;
+      top: 120px;
+    }
+    .actor-right {
+      position: absolute;
+      right: -240px;
+      top: 120px;
+    }
+    /* חצים */
+    .arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+    }
+    /* חץ מה-Left Actor אל המערכת */
+    .arrow-left {
+      border-right: 10px solid #0b2e63;
+      top: 150px;
+      left: -60px;
+    }
+    /* חץ מה-Right Actor אל המערכת */
+    .arrow-right {
+      border-left: 10px solid #0b2e63;
+      top: 150px;
+      right: -45px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Use Case Diagram - ZIM OCR</h1>
+  <div class="diagram-container">
+    <!-- Actor Left -->
+    <div class="actor actor-left">
+      <h3>Shipping Clerk</h3>
+    </div>
+    <!-- Actor Right -->
+    <div class="actor actor-right">
+      <h3>Warehouse Manager</h3>
+    </div>
+    <!-- System Box (במרכז) -->
+    <div class="system-box">
+      <h2>ZIM OCR System</h2>
+      <p>(Upload, OCR, Dashboard)</p>
+    </div>
+    <!-- Arrows -->
+    <div class="arrow arrow-left"></div>
+    <div class="arrow arrow-right"></div>
+  </div>
+</body>
+</html>

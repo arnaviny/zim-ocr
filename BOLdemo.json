@@ -1,0 +1,50 @@
+{
+    "documentId": "Doc001",
+    "billOfLadingNumber": "BOL-2025-0001",
+    "containerNumber": "ZIMU1234567",
+    "vessel": "ZIM Integrated Shipping Services",
+    "voyageNumber": "VY1234",
+    "departureDate": "2025-02-28T08:00:00Z",
+    "arrivalDate": "2025-03-05T16:00:00Z",
+    "originPort": "Port A",
+    "destinationPort": "Port B",
+    "cargoDetails": {
+      "description": "Electronics and consumer goods",
+      "weightKg": 25000,
+      "quantity": 100,
+      "volumeM3": 80,
+      "hazardous": false
+    },
+    "shipper": {
+      "name": "Global Electronics Ltd.",
+      "address": "123 Industrial Way, City A, Country X",
+      "contact": "contact@globalelectronics.com"
+    },
+    "consignee": {
+      "name": "Retail Distribution Inc.",
+      "address": "456 Market Street, City B, Country Y",
+      "contact": "info@retaildistribution.com"
+    },
+    "agent": {
+      "name": "ZIM Agent Services",
+      "contact": "+1234567890"
+    },
+    "shippingTerms": {
+      "incoterms": "FOB",
+      "freightCharges": "Prepaid",
+      "paymentTerms": "30 days net"
+    },
+    "tracking": {
+      "status": "Pending",
+      "currentLocation": "Port A",
+      "gpsCoordinates": "35.6895, 139.6917"
+    },
+    "uploadTimestamp": "2025-03-01T12:00:00Z",
+    "ocrConfidence": 0.92,
+    "processingMetadata": {
+      "processingTimeMs": 3500,
+      "ocrEngine": "Tess4J",
+      "extractionMethod": "Regex-Based"
+    }
+  }
+  

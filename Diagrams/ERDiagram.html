@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>ER Diagram – טבלאות וקשרים</title>
+  <!-- טעינת ספריית Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 20px;
+      padding: 20px;
+      direction: rtl;
+      text-align: center;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #0b2e63;
+    }
+    .mermaid {
+      margin: 20px auto;
+      max-width: 800px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .explanation {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: right;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .explanation ul {
+      padding-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>דיאגרמת ER – טבלאות וקשרים</h1>
+  
+  <!-- דיאגרמת ER באמצעות Mermaid -->
+  <div class="mermaid">
+erDiagram
+    DOCUMENT {
+      UUID document_id PK
+      string billOfLadingNumber
+      string containerNumber
+      string vessel
+      string voyageNumber
+      TIMESTAMP departureDate
+      TIMESTAMP arrivalDate
+      string originPort
+      string destinationPort
+      TIMESTAMP uploadTimestamp
+      numeric ocrConfidence
+      int processingTimeMs
+      string ocrEngine
+      string extractionMethod
+      UUID cargo_details_id
+      UUID party_id
+    }
+    CARGO_DETAILS {
+      UUID cargo_details_id PK
+      string cargoDescription
+      numeric cargoWeight
+      int cargoQuantity
+      numeric cargoVolume
+      boolean hazardous
+    }
+    PARTY {
+      UUID party_id PK
+      string name
+      text address
+      string contact
+      string role
+    }
+
+    DOCUMENT ||--|| CARGO_DETAILS : hasOne
+    DOCUMENT }o--|| PARTY : hasMany
+  </div>
+  
+  <!-- הסבר על הדיאגרמה -->
+  <div class="explanation">
+    <h2>הסבר על דיאגרמת ה-ER</h2>
+    <p>
+      דיאגרמה זו מציגה את מבנה הטבלאות העיקריות במערכת ZIM OCR:
+    </p>
+    <ul>
+      <li><strong>DOCUMENT:</strong> הטבלה המרכזית, בה מאוחסנים פרטי המסמך (מזהה, מספר שטר, פרטי ספינה, OCR ועוד).  
+        יש בה שני שדות נוספים: <em>cargo_details_id</em> שמצביע לרשומה ב־CARGO_DETAILS, ו־<em>party_id</em> שמצביע לרשומה ב־PARTY (או משמש לקשר עם מספר גורמים).
+      </li>
+      <li><strong>CARGO_DETAILS:</strong> טבלת המטען, הכוללת תיאור, משקל, כמות, נפח והאם המטען מסוכן.  
+        הקשר <em>DOCUMENT ||--|| CARGO_DETAILS : hasOne</em> מציין שלכל Document יש רשומת Cargo Details אחת (יחס 1:1).
+      </li>
+      <li><strong>PARTY:</strong> טבלה המכילה פרטי הצדדים המעורבים (מוסר, נמען, סוכן).  
+        הקשר <em>DOCUMENT }o--|| PARTY : hasMany</em> מציין שלמסמך אחד עשויים להיות כמה צדדים (Shipper, Consignee, Agent). 
+        במקרה זה, אפשר לממש זאת גם כטבלת קישור (Document-Party) אם יש צורך לנהל מספר רב של צדדים.
+      </li>
+    </ul>
+    <p>
+      באמצעות דיאגרמה זו, ניתן להבין כיצד הנתונים משויכים זה לזה במסד הנתונים. 
+      <strong>document_id</strong> משמש כמפתח ראשי ב־DOCUMENT,  
+      <strong>cargo_details_id</strong> כמפתח ראשי ב־CARGO_DETAILS,  
+      ו־<strong>party_id</strong> כמפתח ראשי ב־PARTY.
+    </p>
+    <p>
+      הקשרים (Relationships) מוגדרים בשורות האחרונות:
+    </p>
+    <ul>
+      <li><em>DOCUMENT ||--|| CARGO_DETAILS : hasOne</em> – קשר 1:1</li>
+      <li><em>DOCUMENT }o--|| PARTY : hasMany</em> – קשר 1:רב (או אפשרות לריבוי גורמים עבור כל מסמך)</li>
+    </ul>
+  </div>
+</body>
+</html>

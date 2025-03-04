@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>Sequence Diagram & Explanation - ZIM OCR</title>
+  <!-- טעינת Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 20px;
+      padding: 20px;
+      direction: rtl;
+      text-align: right;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #0b2e63;
+    }
+    .mermaid {
+      max-width: 800px;
+      margin: 20px auto;
+    }
+    .explanation {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .explanation h2 {
+      text-align: center;
+    }
+    .explanation p {
+      margin-bottom: 15px;
+    }
+    .explanation ul {
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>דיאגרמת רצף – ZIM OCR</h1>
+
+  <!-- דיאגרמה באמצעות Mermaid -->
+  <div class="mermaid">
+sequenceDiagram
+    participant U as משתמש
+    participant F as פרונטאנד
+    participant C as DocumentController
+    participant O as OCR Module
+    participant DB as Database
+
+    U->>F: מעלה קובץ
+    F->>C: שולח בקשת POST (עם JWT)
+    C->>O: מפעיל OCR
+    O-->>C: מחזיר תוצאת OCR
+    C->>C: Extract Data
+    C->>DB: שומר נתונים
+    DB-->>C: Ack
+    C-->>F: מחזיר תגובת JSON
+  </div>
+
+  <!-- הסבר כולל על הדיאגרמה -->
+  <div class="explanation">
+    <h2>הסבר על דיאגרמת הרצף</h2>
+    <p>
+      בדיאגרמה זו מוצגים חמישה משתתפים (Participants) העיקריים:
+    </p>
+    <ul>
+      <li>
+        <strong>משתמש (User):</strong> מתחיל את התהליך על ידי העלאת קובץ למסך. זהו השלב בו נבחר הקובץ (PDF/תמונה) דרך ממשק ההעלאה.
+      </li>
+      <li>
+        <strong>פרונטאנד (Frontend):</strong> מקבל את הקובץ מהמשתמש ושולח אותו ל־DocumentController באמצעות קריאת POST ל־API. בנוסף, הפרונטאנד מעביר את אסימון ה־JWT לצורך אימות.
+      </li>
+      <li>
+        <strong>DocumentController:</strong> הוא הבקר שמרכז את הלוגיקה העסקית:
+        <ul>
+          <li>מקבל את הבקשה מהפרונטאנד.</li>
+          <li>מפעיל את מנוע ה־OCR (OCR Module) על הקובץ כדי להמיר את התמונה לטקסט.</li>
+          <li>מפעיל קריאה עצמית (Extract Data) על עצמו כדי לחלץ ולנתח את הנתונים מתוך תוצאת ה־OCR.</li>
+          <li>מעביר את הנתונים למודול שמירת הנתונים (Database) ומעדכן את מסד הנתונים.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>OCR Module:</strong> אחראי על עיבוד הקובץ באמצעות OCR (למשל, Tess4J) ומחזיר את תוצאת העיבוד (טקסט) חזרה ל־DocumentController.
+      </li>
+      <li>
+        <strong>Database:</strong> מאחסן את הנתונים החולצו מהקובץ. לאחר שה־DocumentController מעדכן את המסד, מסד הנתונים מחזיר אישור (Ack) שהנתונים נשמרו.
+      </li>
+    </ul>
+    <p>
+      בסיום, ה־DocumentController מחזיר תגובת JSON ל־Frontend, אשר מציגה את הנתונים בדשבורד.
+    </p>
+    <p>
+      הדיאגרמה ממחישה את סדר הפעולות (Sequence) במערכת – מההעלאה, דרך עיבוד OCR, חילוץ ואימות הנתונים, ועד לאחסון הנתונים והחזרת התגובה.
+    </p>
+  </div>
+</body>
+</html>
